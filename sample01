@@ -1,0 +1,50 @@
+<?php
+
+    $count = 0;
+
+    $input_lines = fgets(STDIN);
+    $pieces = explode(" ", $input_lines);
+    $pieces[5] = str_replace(array("\r\n", "\r", "\n"), '', $pieces[5]);
+
+    $rows = fgets(STDIN);
+
+    $ue = $pieces[0];
+    $lines = fgets(STDIN);
+
+    for ( $i = 1; $i < $rows; $i++) {
+        $lines = str_replace(array("\r\n", "\r", "\n"), '', fgets(STDIN));
+
+//echo "lines = " . $lines . "\n";
+        for($j = 0; $j < 6; $j++){
+
+//echo "j = " . $j . "\n";
+//echo "ue = " . $ue . "\n";
+//echo "pieces = " . $pieces[$j] . "\n";
+            if($ue == $pieces[$j]){
+                
+                if($j == 0 || $j == 2 || $j == 4){
+                    if($pieces[$j+1]==$lines){
+                        $count = $count + 2;
+//echo "count1 = " . $count . "\n";
+                    }else{
+                        $count = $count + 1;
+//echo "count2 = " . $count . "\n";
+                    }
+                }else{
+                    if($pieces[$j-1]==$lines){
+                        $count = $count + 2;
+//echo "count3 = " . $count . "\n";
+                    }else{
+                        $count = $count + 1;
+//echo "count4 = " . $count . "\n";
+                    }
+                }
+                $ue = $lines;
+                break;
+            }
+        }
+    }
+
+    echo $count;
+    echo "\n";
+?>
