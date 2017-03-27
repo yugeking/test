@@ -1,6 +1,6 @@
 <?php
 
-    $count = 0;
+//    $count = 0;
 
     $input_lines = fgets(STDIN);
     $pieces = explode(" ", $input_lines);
